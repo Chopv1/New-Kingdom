@@ -1,0 +1,9 @@
+diff a/Packages/manifest.json b/Packages/manifest.json	(rejected hunks)
+@@ -13,6 +13,7 @@
+      "com.unity.ide.vscode": "1.2.5",
+ +<<<<<<< HEAD
+ +=======
++     "com.unity.purchasing": "4.4.1",
+ +>>>>>>> 3311d50 ([WIP] Map creation)
+      "com.unity.test-framework": "1.1.31",
+      "com.unity.textmeshpro": "3.0.6",
