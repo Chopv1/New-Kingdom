@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    GameObject player;
     Vector3 playerStartPosition = Vector3.up;
 
+    public static GameObject player;
     public GameObject prefabPlayer;
     public bool playerHasBeenInitilised = false;
 

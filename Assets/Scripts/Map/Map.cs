@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public GameObject center;
+    public GameObject[] colliders;
+
+    string name;
+    float cost;
+    float exp;
+
     // Start is called before the first frame update
     void Start()
     {
