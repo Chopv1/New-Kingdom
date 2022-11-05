@@ -71,14 +71,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-    "com.unity.services.core": {
-      "version": "1.0.1",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.unitywebrequest": "1.0.0"
-=======
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
       "depth": 2,
@@ -119,7 +111,6 @@
         "com.unity.modules.unitywebrequest": "1.0.0",
         "com.unity.nuget.newtonsoft-json": "3.0.2",
         "com.unity.modules.androidjni": "1.0.0"
->>>>>>> 3311d50 ([WIP] Map creation)
       },
       "url": "https://packages.unity.com"
     },
@@ -164,8 +155,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-<<<<<<< HEAD
-=======
     "com.unity.xr.legacyinputhelpers": {
       "version": "2.1.10",
       "depth": 0,
@@ -176,7 +165,6 @@
       },
       "url": "https://packages.unity.com"
     },
->>>>>>> 3311d50 ([WIP] Map creation)
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

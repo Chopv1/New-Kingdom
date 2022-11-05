@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    public static GameObject Instance;
+
     [SerializeField]
     public List<GameObject> AllMaps = new List<GameObject>();
     public List<GameObject> PlacedMap;
@@ -13,11 +15,12 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        /*if(CreateNewPart(initialMap, Vector3.zero))
+        Instance = this.gameObject;
+        if(CreateNewPart(initialMap, Vector3.zero))
         {
             initialMapHasBeenInitaled=true;
             playerManager.InitilisePlayer();
-        }*/
+        }
             
     }
     void Start()
@@ -35,6 +38,7 @@ public class MapManager : MonoBehaviour
     {
         bool success = false;
         GameObject newOne = Instantiate(a_newPart, a_position, Quaternion.identity);
+        newOne.transform.parent = gameObject.transform;
         if(newOne)
         {
             PlacedMap.Add(a_newPart);

@@ -9,7 +9,7 @@ public class Map : MonoBehaviour
 
     string name;
     float cost;
-    float exp;
+    float kingdomExp;
 
     // Start is called before the first frame update
     void Start()

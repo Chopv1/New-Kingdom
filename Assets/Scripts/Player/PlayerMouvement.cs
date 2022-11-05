@@ -22,11 +22,7 @@ public class PlayerMouvement : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        if(horizontal != 0f|| vertical!=0f)
-        {
-            Debug.Log(horizontal);
-            Debug.Log(vertical);
-        }
+        
         m_Movement.Set(horizontal, 0f, vertical);
 
         bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f);
