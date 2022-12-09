@@ -5,7 +5,7 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public GameObject center;
-    public GameObject[] colliders;
+    public GameObject[] gates;
 
     string name;
     float cost;

@@ -19,10 +19,7 @@ public class UIAddPart : MonoBehaviour
 
     public void AddPart(GameObject a_part)
     {
-        if(MManager.GetComponent<MapManager>().CreateNewPart(a_part, SpawnMapPoint))
-        {
-            Destroy(m_Gate);
-        }
+        MManager.GetComponent<MapManager>().CreateNewPart(a_part, SpawnMapPoint);
         Annuler();
     }
     public void Annuler()
