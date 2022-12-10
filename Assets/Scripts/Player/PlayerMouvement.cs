@@ -8,19 +8,42 @@ public class PlayerMouvement : MonoBehaviour
     public float turnSpeed = 20f;
     public float movementSpeed = 0.05f;
     private Rigidbody m_Rigidbody;
+    [SerializeField] GameObject mainCam;
+    Camera cam;
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
     bool isWalking = false;
 
-    void Start()
+    private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        cam = mainCam.GetComponent<Camera>();
+    }
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        Rotation();
+    }
+
+    private void Rotation()
+    {
+        Ray cameraRay = cam.ScreenPointToRay(Input.mousePosition);
+        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        float rayLength;
+
+        if (groundPlane.Raycast(cameraRay, out rayLength))
+        {
+            Vector3 pointToLook = cameraRay.GetPoint(rayLength);
+            Debug.DrawLine(cameraRay.origin, pointToLook, Color.cyan);
+
+            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        }
     }
 
     private void Move()
@@ -64,7 +87,6 @@ public class PlayerMouvement : MonoBehaviour
         {
             m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement);
             m_Rigidbody.MoveRotation(m_Rotation);
-            Debug.Log(m_Rigidbody.velocity);
         }
     }
 }

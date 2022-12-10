@@ -64,7 +64,6 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
         if (other.gameObject == player)
         {
             UIInteraction.SetActive(true);
