@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
-    List<GameObject> m_AllEnemies;
-
+    private List<GameObject> m_AllEnemies;
+    [SerializeField] private GameObject[] enemyPrefabs;
     public List<GameObject> AllEnemies { get => m_AllEnemies; }
-
-
     private void Awake()
     {
+
         m_AllEnemies= new List<GameObject>();
     }
     // Start is called before the first frame update
@@ -33,5 +33,13 @@ public class EnemyManager : MonoBehaviour
     public void AddEnemy(GameObject a_enemy)
     {
         AllEnemies.Add(a_enemy);
+    }
+
+    public void SpawnEnemies(int enemy) 
+    {
+        AddEnemy((GameObject)Instantiate(enemyPrefabs[0], new Vector3(4.5f,.1f,2.5f), Quaternion.identity));
+        /*for(int i=0; i<=enemy; i++)
+        {
+        }*/
     }
 }

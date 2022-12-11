@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    private string name;
+    private float cost;
+    private float kingdomExp;
+
     public GameObject center;
     public GameObject[] gates;
-
-    string name;
-    float cost;
-    float kingdomExp;
 
     // Start is called before the first frame update
     void Start()

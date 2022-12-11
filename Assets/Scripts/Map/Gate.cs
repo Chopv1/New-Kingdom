@@ -8,13 +8,12 @@ public class Gate : MonoBehaviour
     private GameObject player;
     private GameObject UIInteraction;
     private GameObject MenuToShow;
-    [SerializeField]
-    private GameObject PositionOfTheNextMap;
+    [SerializeField] private GameObject PositionOfTheNextMap;
     private bool canShowMenu = false;
+    private UiManager uiManager;
 
     public LayerMask layer;
 
-    UiManager uiManager;
     private void Start()
     {
         uiManager = UiManager.Instance;

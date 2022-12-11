@@ -5,19 +5,18 @@ using UnityEngine;
 
 public class PlayerMouvement : MonoBehaviour
 {
+    private Rigidbody m_Rigidbody;
+    private Camera cam;
+    private Vector3 m_Movement;
+    private Quaternion m_Rotation = Quaternion.identity;
+    private bool isWalking = false;
+
     public float turnSpeed = 20f;
     public float movementSpeed = 0.05f;
-    private Rigidbody m_Rigidbody;
-    [SerializeField] GameObject mainCam;
-    Camera cam;
-    Vector3 m_Movement;
-    Quaternion m_Rotation = Quaternion.identity;
-    bool isWalking = false;
-
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        cam = mainCam.GetComponent<Camera>();
+        cam = GetComponentInChildren<Camera>();
     }
     void Start()
     {

@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float hp;
-    float maxHp = 100f;
-    float attack = 20f;
-    float range = 1f;
-    float totalExp;
-    int coin;
-    int level;
+    [SerializeField] private GameObject attackArea;
+    private SphereCollider attackAreaCollider;
+    private bool attacking = false;
+    private float timer = 0f;
+    private float attackCouldown = 0.25f;
+    private float hp;
+    private float maxHp = 100f;
+    private float range = 1f;
+    private float totalExp;
+    private int coin;
+    private int level;
     // Start is called before the first frame update
     void Start()
     {
+        attackArea.SetActive(false);
+        attackAreaCollider = attackArea.GetComponent<SphereCollider>();
         hp = maxHp;
     }
 
@@ -25,18 +31,22 @@ public class Player : MonoBehaviour
         {
             Attack();
         }
+
+        if(attacking)
+        {
+            timer += Time.deltaTime;
+            if(timer>attackCouldown)
+            {
+                attacking = false;
+                attackArea.SetActive(attacking);
+                timer = 0f;
+            }
+        }
     }
 
     private void Attack()
     {
-
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log("Attack : " + mousePos);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, mousePos, out hit, range, 6))
-        {
-            Debug.Log("Hit");
-            hit.collider.gameObject.GetComponent<Enemy>().Damage(attack);
-        }
+        attacking= true;
+        attackArea.SetActive(attacking);
     }
 }

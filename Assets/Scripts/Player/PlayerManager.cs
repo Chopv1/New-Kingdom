@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    Vector3 playerStartPosition = Vector3.up;
+    private Vector3 playerStartPosition = Vector3.up;
 
     public static GameObject player;
+    public static GameObject Player { get => player;}
 
     public GameObject prefabPlayer;
     public bool playerHasBeenInitilised = false;
 
-    public static GameObject Player { get => player;}
 
     private void Start()
     {
