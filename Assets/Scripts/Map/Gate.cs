@@ -8,11 +8,14 @@ public class Gate : MonoBehaviour
     private GameObject player;
     private GameObject UIInteraction;
     private GameObject MenuToShow;
-    [SerializeField] private GameObject PositionOfTheNextMap;
     private bool canShowMenu = false;
     private UiManager uiManager;
 
-    public LayerMask layer;
+    [SerializeField] private LayerMask layer;
+    [SerializeField] private GameObject PositionOfTheNextMap;
+    [SerializeField] private GameObject m_WallToDestroy;
+
+    public GameObject WallToDestroy { get => m_WallToDestroy;}
 
     private void Start()
     {
@@ -41,21 +44,29 @@ public class Gate : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.forward, out hit, 2, layer))
         {
+            Destroy(WallToDestroy);
+            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
             Destroy(hit.collider.gameObject);
             Destroy(gameObject);
         }
         else if (Physics.Raycast(transform.position, Vector3.back, out hit, 2, layer))
         {
+            Destroy(WallToDestroy);
+            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
             Destroy(hit.collider.gameObject);
             Destroy(gameObject);
         }
         else if (Physics.Raycast(transform.position, Vector3.left, out hit, 2, layer))
         {
+            Destroy(WallToDestroy);
+            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
             Destroy(hit.collider.gameObject);
             Destroy(gameObject);
         }
         else if (Physics.Raycast(transform.position, Vector3.right, out hit, 2, layer))
         {
+            Destroy(WallToDestroy);
+            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
             Destroy(hit.collider.gameObject);
             Destroy(gameObject);
         }

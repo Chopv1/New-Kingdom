@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class AttackArea : MonoBehaviour
 {
-    private float attack = 20f;
+    private float playerAttack;
+    private float enemieAttack;
 
-    public float Attack { get => attack; set => attack = value; }
+    public float PlayerAttack { get => playerAttack; set => playerAttack = value; }
+    public float EnemieAttack { get => enemieAttack; set => enemieAttack = value; }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Enemy>())
+        if(other.GetComponent<Enemy>() && GetComponentInParent<Player>())
         {
-            other.GetComponent<Enemy>().Damage(attack);
+            PlayerAttack = GetComponentInParent<Player>().AttackDamage;
+            other.GetComponent<Enemy>().Damage(PlayerAttack);
+        }
+        if (other.GetComponent<Player>())
+        {
+            EnemieAttack = GetComponentInParent<Enemy>().AttackDamage;
+            other.GetComponent<Player>().Damage(EnemieAttack);
         }
     }
 }

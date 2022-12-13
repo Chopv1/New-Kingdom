@@ -11,10 +11,10 @@ public class GameManager : MonoBehaviour
     private int kingdomLevel;
     private int playerMoney;
 
-    [SerializeField] EnemyManager enemyManager;
-    [SerializeField] MapManager mapManager;
-    [SerializeField] PlayerManager playerManager;
-    [SerializeField] UiManager uiManager;
+    [SerializeField] private EnemyManager enemyManager;
+    [SerializeField] private MapManager mapManager;
+    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private UiManager uiManager;
 
     void Start()
     {

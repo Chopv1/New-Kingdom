@@ -14,8 +14,11 @@ public class Player : MonoBehaviour
     private float maxHp = 100f;
     private float range = 1f;
     private float totalExp;
-    private int coin;
     private int level;
+    private float attackDamage = 20f;
+
+    public float AttackDamage { get => attackDamage; set => attackDamage = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,5 +51,15 @@ public class Player : MonoBehaviour
     {
         attacking= true;
         attackArea.SetActive(attacking);
+    }
+
+    public void Damage(float a_attaque)
+    {
+        Debug.Log("Attacked player");
+        hp -= a_attaque;
+        if(hp<=0f)
+        {
+            Debug.Log("GameOver");
+        }
     }
 }

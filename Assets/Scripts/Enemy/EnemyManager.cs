@@ -37,7 +37,9 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnEnemies(int enemy) 
     {
-        AddEnemy((GameObject)Instantiate(enemyPrefabs[0], new Vector3(4.5f,.1f,2.5f), Quaternion.identity));
+        GameObject newEnemy = (GameObject)Instantiate(enemyPrefabs[0], new Vector3(4.5f, .1f, 2.5f), Quaternion.identity);
+        AddEnemy(newEnemy);
+        newEnemy.transform.parent = this.transform;
         /*for(int i=0; i<=enemy; i++)
         {
         }*/
