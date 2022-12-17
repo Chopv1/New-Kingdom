@@ -16,7 +16,7 @@ public class MapManager : MonoBehaviour
     void Awake()
     {
         Instance = this.gameObject;
-        if(CreateNewPart(initialMap, Vector3.zero))
+        if (CreateNewPart(initialMap, Vector3.zero, Map.Cardinal.CENTER))
         {
             initialMapHasBeenInitaled=true;
             playerManager.InitilisePlayer();
@@ -34,17 +34,17 @@ public class MapManager : MonoBehaviour
         
     }
 
-    public bool CreateNewPart(GameObject a_newPart, Vector3 a_position)
+    public GameObject CreateNewPart(GameObject a_newPart, Vector3 a_position, Map.Cardinal a_mapCardinal)
     {
-        bool success = false;
         GameObject newOne = Instantiate(a_newPart, a_position, Quaternion.identity);
-        newOne.transform.parent = gameObject.transform;
         if(newOne)
         {
+            newOne.transform.parent = gameObject.transform;
+            newOne.GetComponent<Map>().SetMapCardinal(a_mapCardinal);
             PlacedMap.Add(a_newPart);
-            success = true;
+            return newOne;
         }
 
-        return success;
+        return null;
     }
 }

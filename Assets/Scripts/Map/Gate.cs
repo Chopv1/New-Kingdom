@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
+    [SerializeField] private Map.Cardinal gateCardinal;
+
     private GameObject player;
     private GameObject UIInteraction;
-    private GameObject MenuToShow;
+    private GameObject uiAddPartGO;
+    private UIAddPart uiAddPart;
     private bool canShowMenu = false;
     private UiManager uiManager;
 
@@ -21,20 +24,21 @@ public class Gate : MonoBehaviour
     {
         uiManager = UiManager.Instance;
         UIInteraction = uiManager.Interaction;
-        MenuToShow = uiManager.MenuToShow;
+        uiAddPartGO = uiManager.MenuToShow;
+        uiAddPart = uiManager.MenuToShow.GetComponent<UIAddPart>();
         player = PlayerManager.Player;
         UIInteraction.SetActive(false);
-        MenuToShow.SetActive(false);
+        uiAddPartGO.SetActive(false);
 
     }
     private void Update()
     {
         if (canShowMenu && Input.GetKeyDown(KeyCode.E))
         {
-            MenuToShow.GetComponent<UIAddPart>().SpawnMapPoint = PositionOfTheNextMap.transform.position;
-            MenuToShow.GetComponent<UIAddPart>().Gate = this.gameObject;
+            uiAddPart.SpawnMapPoint = PositionOfTheNextMap.transform.position;
+            uiAddPart.Gate = this.gameObject;
             StatePlayerMovement(false);
-            MenuToShow.SetActive(true);
+            uiAddPartGO.SetActive(true);
         }
         CheckIfGateAlreadyHere();
     }
@@ -92,4 +96,10 @@ public class Gate : MonoBehaviour
     {
         player.GetComponent<PlayerMouvement>().enabled = a_state;
     }
+
+    public Map.Cardinal GetCardinal()
+    {
+        return gateCardinal;
+    }
+    
 }
