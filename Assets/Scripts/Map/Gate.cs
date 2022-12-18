@@ -11,6 +11,7 @@ public class Gate : MonoBehaviour
     private GameObject UIInteraction;
     private GameObject uiAddPartGO;
     private UIAddPart uiAddPart;
+    private Map map;
     private bool canShowMenu = false;
     private UiManager uiManager;
 
@@ -29,6 +30,7 @@ public class Gate : MonoBehaviour
         player = PlayerManager.Player;
         UIInteraction.SetActive(false);
         uiAddPartGO.SetActive(false);
+        map = GetComponentInParent<Map>();
 
     }
     private void Update()
@@ -45,35 +47,22 @@ public class Gate : MonoBehaviour
 
     public void CheckIfGateAlreadyHere()
     {
+        Vector3[] directions = { Vector3.forward, Vector3.back, Vector3.left, Vector3.right };
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.forward, out hit, 2, layer))
+        foreach (Vector3 direction in directions)
         {
-            Destroy(WallToDestroy);
-            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
-            Destroy(hit.collider.gameObject);
-            Destroy(gameObject);
+            if (Physics.Raycast(transform.position, direction, out hit, 2, layer))
+            {
+                hit.collider.gameObject.GetComponentInParent<Map>().RemoveGate(hit.collider.gameObject);
+                map.RemoveGate(this.gameObject);
+                Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
+                Destroy(hit.collider.gameObject);
+                Destroy(WallToDestroy);
+                Destroy(gameObject);
+                break;
+            }
         }
-        else if (Physics.Raycast(transform.position, Vector3.back, out hit, 2, layer))
-        {
-            Destroy(WallToDestroy);
-            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
-            Destroy(hit.collider.gameObject);
-            Destroy(gameObject);
-        }
-        else if (Physics.Raycast(transform.position, Vector3.left, out hit, 2, layer))
-        {
-            Destroy(WallToDestroy);
-            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
-            Destroy(hit.collider.gameObject);
-            Destroy(gameObject);
-        }
-        else if (Physics.Raycast(transform.position, Vector3.right, out hit, 2, layer))
-        {
-            Destroy(WallToDestroy);
-            Destroy(hit.collider.gameObject.GetComponent<Gate>().WallToDestroy);
-            Destroy(hit.collider.gameObject);
-            Destroy(gameObject);
-        }
+
     }
 
     private void OnTriggerEnter(Collider other)
